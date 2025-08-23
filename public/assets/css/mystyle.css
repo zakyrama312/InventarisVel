@@ -1,0 +1,350 @@
+body {
+    background-color:
+#f8f9fa;
+    color: #333;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.brand {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/ Header & Sidebar /
+.app-header {
+    background-color: #fff;
+    border-bottom: 1px solid
+#e9ecef;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.left-sidebar {
+    background-color: #fff;
+    border-right: 1px solid
+#e9ecef;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.04);
+}
+/ Card Styles /
+.card {
+    border: 1px solid
+#e9ecef;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+.card-body {
+    background-color: #fff;
+}
+/ Room Card Specific Styles /
+.room-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(135deg, #fff 0%,
+#f8f9fa 100%);
+    border: 1px solid
+#e9ecef !important;
+}
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    border-color:
+#007bff !important;
+}
+.room-card .card-body {
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+.room-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+#007bff,
+#0056b3);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+.room-card:hover::before {
+    transform: scaleX(1);
+}
+/ Room Icon /
+.room-icon {
+    position: relative;
+}
+.room-icon i {
+    transition: all 0.3s ease;
+}
+.room-card:hover .room-icon i {
+    color:
+#007bff !important;
+    transform: scale(1.1);
+}
+/ Stats Section /
+.stats-section {
+    background-color:
+#f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+}
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color:
+#007bff;
+    display: block;
+    line-height: 1.2;
+}
+/ Badge Styles /
+.badge {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+/ Responsive Grid /
+.g-4 {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
+}
+/ Link Styles /
+a.text-decoration-none:hover {
+    text-decoration: none !important;
+}
+/ Shadow Classes /
+.shadow-sm {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+}
+/ Container Fluid Padding /
+.container-fluid {
+    padding: 1.5rem;
+}
+/ Empty State Styles /
+.text-center.py-5 {
+    padding: 3rem 1rem !important;
+}
+.text-center.py-5 i {
+    opacity: 0.5;
+}
+/ Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 1rem 0.5rem;
+    }
+
+    .room-card {
+        margin-bottom: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+}
+/* Animation for loading /
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.room-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+/ Staggered animation for multiple cards */
+.room-card:nth-child(1) { animation-delay: 0.1s; }
+.room-card:nth-child(2) { animation-delay: 0.2s; }
+.room-card:nth-child(3) { animation-delay: 0.3s; }
+.room-card:nth-child(4) { animation-delay: 0.4s; }
+.room-card:nth-child(n+5) { animation-delay: 0.5s; }
+
+/* Stats Cards Horizontal - Following existing design pattern */
+.stat-card-horizontal {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-card-horizontal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.stat-card-horizontal.bg-primary-light {
+    border-left: 4px solid #007bff;
+}
+
+.stat-card-horizontal.bg-success-light {
+    border-left: 4px solid #28a745;
+}
+
+.stat-card-horizontal.bg-warning-light {
+    border-left: 4px solid #ffc107;
+}
+
+.stat-card-horizontal.bg-info-light {
+    border-left: 4px solid #17a2b8;
+}
+
+.stat-icon-horizontal {
+    font-size: 2.2rem;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+.stat-content-horizontal h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #333;
+}
+
+.stat-content-horizontal p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Enhanced Room Cards - Additional stats */
+.stat-item-small {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.stat-number-small {
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: block;
+    line-height: 1.2;
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Activity List Styles - Following existing card pattern */
+.activity-list {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-item:hover {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.activity-content h6 {
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.activity-content p {
+    font-size: 0.8rem;
+}
+
+.activity-content small {
+    font-size: 0.75rem;
+}
+
+/* Badge variants to match existing theme */
+.badge.bg-warning {
+    color: #000;
+}
+
+/* Mobile Responsiveness - Extending existing patterns */
+@media (max-width: 768px) {
+    .stat-card-horizontal {
+        padding: 16px;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .stat-icon-horizontal {
+        font-size: 1.8rem;
+    }
+
+    .stat-content-horizontal h3 {
+        font-size: 1.4rem;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+
+    .activity-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px;
+    }
+
+    .activity-status {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 576px) {
+    .stat-card-horizontal {
+        padding: 12px;
+    }
+
+    .chart-container {
+        height: 200px;
+    }
+}
+
+/* Animation extending existing pattern */
+.stat-card-horizontal {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Staggered animation for stats cards */
+.stat-card-horizontal:nth-child(1) { animation-delay: 0.05s; }
+.stat-card-horizontal:nth-child(2) { animation-delay: 0.1s; }
+.stat-card-horizontal:nth-child(3) { animation-delay: 0.15s; }
+.stat-card-horizontal:nth-child(4) { animation-delay: 0.2s; }
+
+/* Scrollbar styling for activity lists */
+.activity-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.activity-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.activity-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.activity-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

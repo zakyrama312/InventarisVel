@@ -22,11 +22,11 @@ class PeminjamanController extends Controller
         $barang = BarangMasuk::where('prodi_id', $idJurusan)
             ->with(['ruang', 'kategori'])
             ->get();
-        $peminjaman = Peminjaman::with(['barangMasuk.ruang', 'barangMasuk.kategori'])
+        $peminjaman = Peminjaman::with(['barangMasuk.ruang', 'barangMasuk.kategori', 'barangMasuk.barangstoks'])
             ->where('prodi_id', $idJurusan)->get();
 
         if ($request->ajax()) {
-            $query = Peminjaman::with(['barangMasuk.ruang', 'barangMasuk.kategori'])
+            $query = Peminjaman::with(['barangMasuk.ruang', 'barangMasuk.kategori', 'barangMasuk.barangstoks'])
                 ->where('prodi_id', $idJurusan);
 
             // Terapkan filter tanggal
@@ -87,6 +87,9 @@ class PeminjamanController extends Controller
 
                     return  $kategori . '  ' . $merk . ' - ' . $namaRuang;
                 })
+                ->addColumn('satuan', function ($row) {
+                    return optional($row->barangMasuk->barangstoks->first())->satuan ?? '';
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }
@@ -99,11 +102,11 @@ class PeminjamanController extends Controller
         $barang = BarangMasuk::where('prodi_id', $idJurusan)
             ->with(['ruang', 'kategori'])
             ->get();
-        $peminjaman = Peminjaman::with(['barangMasuk.ruang', 'barangMasuk.kategori'])
+        $peminjaman = Peminjaman::with(['barangMasuk.ruang', 'barangMasuk.kategori', 'barangMasuk.barangstoks'])
             ->where('prodi_id', $idJurusan)->get();
 
         if ($request->ajax()) {
-            $query = Peminjaman::with(['barangMasuk.ruang', 'barangMasuk.kategori'])
+            $query = Peminjaman::with(['barangMasuk.ruang', 'barangMasuk.kategori', 'barangMasuk.barangstoks'])
                 ->where('prodi_id', $idJurusan);
 
             // Terapkan filter tanggal
@@ -128,6 +131,9 @@ class PeminjamanController extends Controller
                     $namaRuang = $row->barangMasuk->ruang->nama_ruang ?? 'Tidak Ada Ruang';
 
                     return  $kategori . '  ' . $merk . ' - ' . $namaRuang;
+                })
+                ->addColumn('satuan', function ($row) {
+                    return optional($row->barangMasuk->barangstoks->first())->satuan ?? '';
                 })
                 ->make(true);
         }

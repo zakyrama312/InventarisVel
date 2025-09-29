@@ -41,6 +41,9 @@ class BarangMasukController extends Controller
                     // Kalau mau jumlah total stok_masuk
                     return $row->barangstoks->sum('stok_masuk');
                 })
+                ->addColumn('satuan', function ($row) {
+                    return optional($row->barangstoks->first())->satuan ?? '';
+                })
                 ->addColumn('action', function ($row) {
                     return '
                         <a href="' . url('barang-masuk/' . $row->id . '/edit') . '" class="me-2">
@@ -98,7 +101,9 @@ class BarangMasukController extends Controller
                 //         </a>
                 //     ';
                 // })
-
+                ->addColumn('satuan', function ($row) {
+                    return optional($row->barangstoks->first())->satuan ?? '';
+                })
                 ->editColumn('created_at', fn($row) => \Carbon\Carbon::parse($row->created_at)->locale('id')->translatedFormat('d F Y'))
                 ->editColumn('kondisi_id', fn($row) => $row->kondisi->nama_kondisi ?? '-')
                 ->editColumn('ruang_id', fn($row) => $row->ruang->nama_ruang ?? '-')
@@ -124,9 +129,10 @@ class BarangMasukController extends Controller
 
         $validator = Validator::make($request->all(), [
             'namabarang' => 'required|string|max:255',
-            'kodebarang' => 'nullable|string|max:255',
+            'kodebarang' => 'required|string|max:255',
             'merkbarang' => 'nullable|string|max:255',
             'stokmasuk' => 'required|numeric|min:1',
+            'satuan' => 'required|string|max:255',
             'ukuran' => 'nullable|string|max:255',
             'bahan' => 'nullable|string|max:255',
             'tahunbeli' => 'nullable|date',
@@ -163,6 +169,7 @@ class BarangMasukController extends Controller
             'barang_id' => $barang->id,
             'prodi_id' => $idjurusan,
             'stok_masuk' => $request->stokmasuk,
+            'satuan' => $request->satuan,
             'total_stok' => $request->stokmasuk,
             'stok_keluar' => 0,
         ]);
@@ -173,7 +180,7 @@ class BarangMasukController extends Controller
     public function edit($id)
     {
         $idJurusan = Auth::user()->prodi_id;
-        $barangMasuk = BarangMasuk::with(['kondisi', 'kategori', 'ruang'])->findOrFail($id);
+        $barangMasuk = BarangMasuk::with(['kondisi', 'kategori', 'ruang', 'barangstoks'])->findOrFail($id);
         $kondisi = Kondisi::where('prodi_id', $idJurusan)->get();
         $kategori = Kategori::where('prodi_id', $idJurusan)->get();
         $ruang = Ruang::where('prodi_id', $idJurusan)->get();
@@ -187,9 +194,10 @@ class BarangMasukController extends Controller
             'kodebarang' => 'required',
             'merkbarang' => 'required',
             'stokmasuk' => 'required|numeric|min:1',
+            'satuan' => 'required|string|max:255',
             'ukuran' => 'nullable',
             'bahan' => 'nullable',
-            'tahunbeli' => 'nullable|date',
+            'tahunbeli' => 'nullable|string',
             'spesifikasi' => 'nullable',
             'keterangan' => 'nullable',
             'kategori' => 'required',
@@ -216,6 +224,7 @@ class BarangMasukController extends Controller
         // Update stok terakhir di tabel barang_stoks
         BarangStoks::where('barang_id', $id)->update([
             'stok_masuk' => $request->stokmasuk,
+            'satuan' => $request->satuan,
             'total_stok' => $request->stokmasuk, // bisa disesuaikan kalau mau + stok lama
         ]);
 

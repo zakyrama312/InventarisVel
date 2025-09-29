@@ -35,7 +35,10 @@ $(document).ready(function() {
             {
                 data: 'stok_masuk',
                 name: 'stok_masuk',
-                className: 'text-center'
+                className: 'text-center',
+                render: function(data, type, row) {
+                    return data + ' ' + row.satuan;
+                }
             },
             {
                 data: 'kondisi.nama_kondisi',
@@ -150,7 +153,10 @@ $(document).ready(function() {
                 {
                     data: 'stok_masuk',
                     name: 'stok_masuk',
-                    className: 'text-center'
+                    className: 'text-center',
+                    render: function(data, type, row) {
+                        return data + ' ' + row.satuan;
+                    }
                 },
                 {
                     data: 'kondisi.nama_kondisi',
@@ -255,7 +261,11 @@ $(document).ready(function() {
                 {
                     data: 'jumlah',
                     name: 'jumlah',
-                    className: 'text-center'
+                    className: 'text-center',
+                    render: function(data, type, row) {
+                        return data + ' ' + row.satuan;
+                    }
+
                 },
                 {
                     data: 'nama_peminjam',
@@ -400,7 +410,10 @@ $(document).ready(function() {
                 {
                     data: 'jumlah',
                     name: 'jumlah',
-                    className: 'text-center'
+                    className: 'text-center',
+                    render: function(data, type, row) {
+                        return data + ' ' + row.satuan;
+                    }
                 },
                 {
                     data: 'nama_permintaan',
@@ -537,7 +550,10 @@ $(document).ready(function() {
                 {
                     data: 'jumlah',
                     name: 'jumlah',
-                    className: 'text-center'
+                    className: 'text-center',
+                    render: function(data, type, row) {
+                        return data + ' ' + row.satuan;
+                    }
                 },
                 {
                     data: 'nama_peminjam',
@@ -673,7 +689,10 @@ $(document).ready(function() {
                 {
                     data: 'jumlah',
                     name: 'jumlah',
-                    className: 'text-center'
+                    className: 'text-center',
+                    render: function(data, type, row) {
+                        return data + ' ' + row.satuan;
+                    }
                 },
                 {
                     data: 'nama_permintaan',

@@ -21,11 +21,11 @@ class PermintaanController extends Controller
         $barang = BarangMasuk::where('prodi_id', $idJurusan)
             ->with(['ruang', 'kategori'])
             ->get();
-        $permintaan = Permintaan::with(['barangMasuk.ruang', 'barangMasuk.kategori'])
+        $permintaan = Permintaan::with(['barangMasuk.ruang', 'barangMasuk.kategori', 'barangMasuk.barangstoks'])
             ->where('prodi_id', $idJurusan)->get();
 
         if ($request->ajax()) {
-            $query = Permintaan::with(['barangMasuk.ruang', 'barangMasuk.kategori'])
+            $query = Permintaan::with(['barangMasuk.ruang', 'barangMasuk.kategori', 'barangMasuk.barangstoks'])
                 ->where('prodi_id', $idJurusan);
 
             // Terapkan filter tanggal
@@ -76,6 +76,12 @@ class PermintaanController extends Controller
 
                     return  $kategori . '  ' . $merk . ' - ' . $namaRuang;
                 })
+                ->addColumn('satuan', function ($row) {
+                    return optional($row->barangstoks->first())->satuan ?? '';
+                })
+                ->addColumn('satuan', function ($row) {
+                    return optional($row->barangMasuk->barangstoks->first())->satuan ?? '';
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }
@@ -88,11 +94,11 @@ class PermintaanController extends Controller
         $barang = BarangMasuk::where('prodi_id', $idJurusan)
             ->with(['ruang', 'kategori'])
             ->get();
-        $permintaan = Permintaan::with(['barangMasuk.ruang', 'barangMasuk.kategori'])
+        $permintaan = Permintaan::with(['barangMasuk.ruang', 'barangMasuk.kategori', 'barangMasuk.barangstoks'])
             ->where('prodi_id', $idJurusan)->get();
 
         if ($request->ajax()) {
-            $query = Permintaan::with(['barangMasuk.ruang', 'barangMasuk.kategori'])
+            $query = Permintaan::with(['barangMasuk.ruang', 'barangMasuk.kategori', 'barangMasuk.barangstoks'])
                 ->where('prodi_id', $idJurusan);
 
             // Terapkan filter tanggal
@@ -117,6 +123,9 @@ class PermintaanController extends Controller
                     $namaRuang = $row->barangMasuk->ruang->nama_ruang ?? 'Tidak Ada Ruang';
 
                     return  $kategori . '  ' . $merk . ' - ' . $namaRuang;
+                })
+                ->addColumn('satuan', function ($row) {
+                    return optional($row->barangMasuk->barangstoks->first())->satuan ?? '';
                 })
                 ->make(true);
         }

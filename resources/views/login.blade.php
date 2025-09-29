@@ -23,7 +23,7 @@
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="{{ asset('/')}}assets/images/logos/ventera.png" width="180" alt="">
                                 </a>
-                                <p class="text-center">Aplikasi Inventaris,Peminjaman dan Permintaan Barang Habis Pakai
+                                <p class="text-center">Aplikasi Peminjaman Peralatan dan Permintaan Barang
                                 </p>
                                 @if ($errors -> any())
                                 <div class="alert alert-danger myalert text-danger">

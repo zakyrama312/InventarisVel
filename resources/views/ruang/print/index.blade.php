@@ -65,7 +65,7 @@
                         <th class="text-center">Spesifikasi</th>
                         <th class="text-center">Ukuran</th>
                         <th class="text-center">Bahan</th>
-                        <th class="text-center">Tahun Pembuatan</th>
+                        <th class="text-center">Tahun Pengadaan</th>
                         <th class="text-center">Kode Barang</th>
                         <th class="text-center">Jumlah Barang</th>
                         <th class="text-center">Harga Beli</th>
@@ -82,9 +82,9 @@
                         <td>{{ $bm->spesifikasi }}</td>
                         <td class="text-center">{{ $bm->ukuran }}</td>
                         <td class="text-center">{{ $bm->bahan }}</td>
-                        <td class="text-center">{{ $bm->tahun_beli }}</td>
+                        <td class="text-center">{{ $bm->tahun_pengadaan }}</td>
                         <td class="text-center">{{ $bm->kode_barang }}</td>
-                        <td class="text-center">{{ $bm->barangstoks->sum('stok_masuk') }}</td>
+                        <td class="text-center">{{ $bm->barangstoks->sum('stok_masuk') }} {{ optional($bm->barangstoks->first())->satuan }}</td>
                         <td class="text-center">{{ $bm->harga_beli }}</td>
                         <td class="text-center">{{ $bm->kondisi->nama_kondisi }}</td>
                         <td>{{ $bm->keterangan }}</td>

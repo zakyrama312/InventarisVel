@@ -29,7 +29,7 @@
                     <td scope="row">{{ $loop -> iteration }}</td>
                     <td>{{ $r->nama_barang }}</td>
                     <td>{{ $r->merk }}</td>
-                    <td>{{ $r->barangstoks->sum('stok_masuk') }}</td>
+                    <td>{{ $r->barangstoks->sum('stok_masuk') }} {{ optional($r->barangstoks->first())->satuan }}</td>
                     <td>{{ $r->kondisi->nama_kondisi }}</td>
                     <td>{{ $r->ruang->nama_ruang }}</td>
                     <td>{{ $r->keterangan }}</td>

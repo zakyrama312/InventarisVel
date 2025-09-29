@@ -41,4 +41,8 @@ class BarangMasuk extends Model
     {
         return $this->hasMany(BarangStoks::class, 'barang_id', 'id');
     }
+    public function barangMasuk()
+    {
+        return $this->belongsTo(BarangMasuk::class, 'barang_id', 'id');
+    }
 }

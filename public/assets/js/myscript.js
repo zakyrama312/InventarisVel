@@ -35,10 +35,7 @@ $(document).ready(function() {
             {
                 data: 'stok_masuk',
                 name: 'stok_masuk',
-                className: 'text-center',
-                render: function(data, type, row) {
-                    return data + ' ' + row.satuan;
-                }
+                className: 'text-center'
             },
             {
                 data: 'kondisi.nama_kondisi',
@@ -153,10 +150,7 @@ $(document).ready(function() {
                 {
                     data: 'stok_masuk',
                     name: 'stok_masuk',
-                    className: 'text-center',
-                    render: function(data, type, row) {
-                        return data + ' ' + row.satuan;
-                    }
+                    className: 'text-center'
                 },
                 {
                     data: 'kondisi.nama_kondisi',

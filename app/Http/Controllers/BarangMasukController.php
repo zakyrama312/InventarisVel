@@ -35,14 +35,9 @@ class BarangMasukController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('stok_masuk', function ($row) {
-                    // Kalau mau ambil stok pertama
-                    // return optional($row->barangstoks->first())->stok_masuk ?? 0;
-
-                    // Kalau mau jumlah total stok_masuk
-                    return $row->barangstoks->sum('stok_masuk');
-                })
-                ->addColumn('satuan', function ($row) {
-                    return optional($row->barangstoks->first())->satuan ?? '';
+                    $stok = $row->barangstoks->sum('stok_masuk');
+                    $satuan = optional($row->barangstoks->first())->satuan ?? '';
+                    return $stok . ' ' . $satuan;
                 })
                 ->addColumn('action', function ($row) {
                     return '
@@ -85,24 +80,9 @@ class BarangMasukController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('stok_masuk', function ($row) {
-                    // Kalau mau ambil stok pertama
-                    // return optional($row->barangstoks->first())->stok_masuk ?? 0;
-
-                    // Kalau mau jumlah total stok_masuk
-                    return $row->barangstoks->sum('stok_masuk');
-                })
-                // ->addColumn('action', function ($row) {
-                //     return '
-                //         <a href="' . url('barang-masuk/' . $row->id . '/edit') . '" class="me-2">
-                //             <i class="ti ti-edit text-warning"></i>
-                //         </a>
-                //         <a href="#" data-bs-toggle="modal" data-bs-target="#modalDelete' . $row->id . '">
-                //             <i class="ti ti-trash text-danger"></i>
-                //         </a>
-                //     ';
-                // })
-                ->addColumn('satuan', function ($row) {
-                    return optional($row->barangstoks->first())->satuan ?? '';
+                    $stok = $row->barangstoks->sum('stok_masuk');
+                    $satuan = optional($row->barangstoks->first())->satuan ?? '';
+                    return $stok . ' ' . $satuan;
                 })
                 ->editColumn('created_at', fn($row) => \Carbon\Carbon::parse($row->created_at)->locale('id')->translatedFormat('d F Y'))
                 ->editColumn('kondisi_id', fn($row) => $row->kondisi->nama_kondisi ?? '-')

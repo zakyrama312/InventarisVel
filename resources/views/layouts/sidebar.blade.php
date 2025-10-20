@@ -4,7 +4,7 @@
         <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="./index.html" class="text-nowrap logo-img">
                 {{-- <img src="{{ asset('/')}}assets/images/logos/dark-logo.svg" width="180" alt="" /> --}}
-                <img src="{{ asset('/')}}assets/images/logos/ventera.png" width="180" alt="">
+                <img src="{{ asset('/')}}assets/images/logos/Ventera.png" width="180" alt="">
                 {{-- <h3 class="brand">Inventaris Vel</h3> --}}
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -41,14 +41,14 @@
                         <span class="hide-menu">Pengguna</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ url('jurusan') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Jurusan</span>
+                        <span class="hide-menu">Prodi</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ url('kondisi') }}" aria-expanded="false">
                         <span>

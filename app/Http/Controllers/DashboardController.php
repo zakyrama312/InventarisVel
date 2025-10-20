@@ -38,7 +38,7 @@ class DashboardController extends Controller
         // Stats Cards Data
         $stats = [
             'total_ruangan' => $ruangs->count(),
-            'total_barang' => DB::table('barang')->count(),
+            'total_barang' => DB::table('barang_stoks')->sum('total_stok'),
             'permintaan_menunggu' =>
             DB::table('permintaan')->where('status', 'pending')->count() +
                 DB::table('peminjaman')->where('status', 'pending')->count(),

@@ -77,9 +77,6 @@ class PermintaanController extends Controller
                     return  $kategori . '  ' . $merk . ' - ' . $namaRuang;
                 })
                 ->addColumn('satuan', function ($row) {
-                    return optional($row->barangstoks->first())->satuan ?? '';
-                })
-                ->addColumn('satuan', function ($row) {
                     return optional($row->barangMasuk->barangstoks->first())->satuan ?? '';
                 })
                 ->rawColumns(['action'])

@@ -21,7 +21,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('/')}}assets/images/logos/ventera.png" width="180" alt="">
+                                    <img src="{{ asset('/')}}assets/images/logos/Ventera.png" width="180" alt="">
                                 </a>
                                 <p class="text-center">Aplikasi Peminjaman Peralatan dan Permintaan Barang
                                 </p>
